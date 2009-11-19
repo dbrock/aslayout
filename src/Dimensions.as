@@ -21,6 +21,9 @@ package
     public function rectangleAt(position : Position) : Rectangle
     { return Rectangle.of(position, this); }
     
+    public function get asRectangle() : Rectangle
+    { return rectangleAt(Position.ORIGIN); }
+    
     public function fitsInside(container : Dimensions) : Boolean
     { return width <= container.width && height <= container.height; }
   }

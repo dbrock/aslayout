@@ -15,6 +15,9 @@ package
       return result;
     }
     
+    public static function get ORIGIN() : Position
+    { return Position.of(0, 0); }
+    
     public function toString() : String
     { return "(" + x + ", " + y + ")"; }
   }

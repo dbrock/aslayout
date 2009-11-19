@@ -24,7 +24,7 @@ package
     }
     
     private function reset() : void
-    { space = dimensions.rectangleAt(Position.of(0, 0)); }
+    { space = dimensions.asRectangle; }
     
     private function tryPacking(element : LayoutableElement) : void
     {
