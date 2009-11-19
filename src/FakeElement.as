@@ -9,7 +9,7 @@ package
     public function FakeElement(dimensions : Dimensions)
     { _dimensions = dimensions; }
     
-    public function get dimensions() : Dimensions
+    public function get preferredDimensions() : Dimensions
     { return _dimensions; }
   }
 }

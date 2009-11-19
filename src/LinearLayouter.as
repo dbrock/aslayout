@@ -20,33 +20,34 @@ package
     public function execute() : void
     {
       reset();
-      
-      for each (var element : LayoutableElement in elements)
-        pack(element);
+      elements.forEach(tryPacking);
     }
     
     private function reset() : void
     { space = dimensions.rectangleAt(Position.of(0, 0)); }
     
-    private function pack(element : LayoutableElement) : void
+    private function tryPacking(element : LayoutableElement) : void
     {
-      if (fits(element))
-        container.moveElement(element, allocate(element.dimensions).position);
+      if (elementFits(element))
+        pack(element);
       else
         throw new Error;
     }
     
-    private function fits(element : LayoutableElement) : Boolean
-    { return element.dimensions.fitsInside(space.dimensions); }
+    private function elementFits(element : LayoutableElement) : Boolean
+    { return element.preferredDimensions.fitsInside(space.dimensions); }
     
-    private function allocate(dimensions : Dimensions) : Rectangle
+    private function pack(element : LayoutableElement) : void
     {
-      const result : Rectangle = dimensions.rectangleAt(space.position);
+      const position : Position = space.position;
       
-      space = getRemainingSpace(dimensions);
+      allocate(element.preferredDimensions);
       
-      return result;
+      container.moveElement(element, position);
     }
+    
+    private function allocate(dimensions : Dimensions) : void
+    { space = getRemainingSpace(dimensions); }
     
     protected function getRemainingSpace(dimensions : Dimensions) : Rectangle
     { throw new Error; }

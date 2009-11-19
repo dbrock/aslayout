@@ -1,5 +1,5 @@
 package
 {
   public interface LayoutableElement
-  { function get dimensions() : Dimensions; }
+  { function get preferredDimensions() : Dimensions; }
 }
