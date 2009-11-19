@@ -1,4 +1,4 @@
-package
+package se.gointeractive.layout
 {
   import org.asspec.util.sequences.ArraySequenceContainer;
   import org.asspec.util.sequences.SequenceContainer;
