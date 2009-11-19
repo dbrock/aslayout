@@ -1,6 +1,6 @@
 package se.gointeractive.layout
 {
-  import org.asspec.specification.AbstractSpecification;
+  import org.asspec.util.sequences.Sequence;
 
   public class ColumnLayouterSpecification
     extends AbstractLayouterSpecification
@@ -8,19 +8,20 @@ package se.gointeractive.layout
     override protected function execute() : void
     {
       it("should layout two elements correctly", function () : void {
-        use_layout(200, 200);
-        
         const element1 : FakeElement = add_element(100, 100);
         const element2 : FakeElement = add_element(100, 100);
         
-        execute_layout();
+        execute_layout(200, 200);
         
         specify(element1.position).should.look_like("(0, 0)");
         specify(element2.position).should.look_like("(0, 100)");
       });
     }
     
-    override protected function getLayouter(container : Layoutable) : Layouter
-    { return new ColumnLayouter(container); }
+    override protected function getLayouter
+      (container : Layoutable,
+       dimensions : Dimensions,
+       elements : Sequence) : Layouter
+    { return new ColumnLayouter(container, dimensions, elements); }
   }
 }

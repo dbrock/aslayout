@@ -1,20 +1,22 @@
 package se.gointeractive.layout
 {
   import org.asspec.specification.AbstractSpecification;
+  import org.asspec.util.sequences.ArraySequenceContainer;
+  import org.asspec.util.sequences.Sequence;
+  import org.asspec.util.sequences.SequenceContainer;
 
   public class AbstractLayouterSpecification extends AbstractSpecification
   {
     private var layouter : Layouter;
-    private var container : FakeContainer;
+    private var parent : FakeParent;
+    
+    private const elementContainer : SequenceContainer
+      = new ArraySequenceContainer;
     
     protected function use_layout(width : Number, height : Number) : void
     {
-      container = new FakeContainer(Dimensions.of(width, height));
-      layouter = getLayouter(container);
+      parent;
     }
-    
-    protected function getLayouter(container : Layoutable) : Layouter
-    { throw new Error; }
     
     protected function add_element
       (width : Number, height : Number) : FakeElement
@@ -22,12 +24,25 @@ package se.gointeractive.layout
       const element : FakeElement
         = new FakeElement(Dimensions.of(width, height));
       
-      container.elementContainer.add(element);
+      elementContainer.add(element);
       
       return element;
     }
     
-    protected function execute_layout() : void
-    { layouter.execute(); }
+    protected function execute_layout(width : Number, height : Number) : void
+    {
+      const parent : Layoutable = new FakeParent;
+      const dimensions : Dimensions = Dimensions.of(width, height);
+      const elements : Sequence = elementContainer.sequence;
+      
+      getLayouter(parent, dimensions, elements).execute();
+    }
+    
+    protected function getLayouter
+      (parent : Layoutable,
+       dimensions : Dimensions,
+       elements : Sequence) : Layouter
+    { throw new Error; }
+    
   }
 }

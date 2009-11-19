@@ -1,9 +1,18 @@
 package se.gointeractive.layout
 {
-  public class Position
+  import org.asspec.util.EqualityComparable;
+  
+  public class Position implements EqualityComparable
   {
     public var x : Number;
     public var y : Number;
+    
+    public function equals(other : EqualityComparable) : Boolean
+    {
+      return other is Position
+        && Position(other).x == x
+        && Position(other).y == y;
+    }
     
     public static function of(x : Number, y : Number) : Position
     {

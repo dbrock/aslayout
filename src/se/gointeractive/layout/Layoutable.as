@@ -4,9 +4,6 @@ package se.gointeractive.layout
   
   public interface Layoutable
   {
-    function get dimensions() : Dimensions;
-    function get elements() : Sequence;
-    
     function moveElement
       (element : LayoutableElement, position : Position) : void;
   }

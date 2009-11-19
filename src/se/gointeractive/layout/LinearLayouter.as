@@ -5,17 +5,20 @@ package se.gointeractive.layout
   public class LinearLayouter implements Layouter
   {
     private var container : Layoutable;
+    private var dimensions : Dimensions;
+    private var elements : Sequence;
     
     protected var space : Rectangle;
 
-    public function LinearLayouter(container : Layoutable)
-    { this.container = container; }
-    
-    private function get elements() : Sequence
-    { return container.elements; }
-    
-    private function get dimensions() : Dimensions
-    { return container.dimensions; }
+    public function LinearLayouter
+      (container : Layoutable,
+       dimensions : Dimensions,
+       elements : Sequence)
+    {
+      this.container = container;
+      this.dimensions = dimensions;
+      this.elements = elements;
+    }
     
     public function execute() : void
     {

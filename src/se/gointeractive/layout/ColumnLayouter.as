@@ -1,9 +1,12 @@
 package se.gointeractive.layout
 {
+  import org.asspec.util.sequences.Sequence;
+  
   public class ColumnLayouter extends LinearLayouter
   {
-    public function ColumnLayouter(container : Layoutable)
-    { super(container); }
+    public function ColumnLayouter
+      (parent : Layoutable, dimensions : Dimensions, elements : Sequence)
+    { super(parent, dimensions, elements); }
     
     override protected function getRemainingSpace
       (dimensions : Dimensions) : Rectangle

@@ -1,6 +1,8 @@
 package se.gointeractive.layout
 {
   import org.asspec.basic.AbstractSuite;
+  
+  import se.gointeractive.layout.container.ContainerSpecification;
 
   public class LayoutSuite extends AbstractSuite
   {
@@ -8,6 +10,7 @@ package se.gointeractive.layout
     {
       add(RowLayouterSpecification);
       add(ColumnLayouterSpecification);
+      add(ContainerSpecification);
     }
   }
 }
