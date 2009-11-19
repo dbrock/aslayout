@@ -1,0 +1,12 @@
+package
+{
+  import org.asspec.basic.AbstractSuite;
+
+  public class LayoutSuite extends AbstractSuite
+  {
+    override protected function populate() : void
+    {
+      add(RowLayoutSpecification);
+    }    
+  }
+}
