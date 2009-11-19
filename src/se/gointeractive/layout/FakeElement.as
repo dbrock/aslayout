@@ -1,6 +1,6 @@
 package se.gointeractive.layout
 {
-  public class FakeElement implements LayoutableElement
+  public class FakeElement implements LayoutElement
   {
     private var _dimensions : Dimensions;
     

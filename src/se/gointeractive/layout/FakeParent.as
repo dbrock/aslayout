@@ -4,10 +4,10 @@ package se.gointeractive.layout
   import org.asspec.util.sequences.Sequence;
   import org.asspec.util.sequences.SequenceContainer;
 
-  public class FakeParent implements Layoutable
+  public class FakeParent implements LayoutParent
   {
     public function moveElement
-      (element : LayoutableElement, position : Position) : void
+      (element : LayoutElement, position : Position) : void
     { FakeElement(element).position = position; }
   }
 }

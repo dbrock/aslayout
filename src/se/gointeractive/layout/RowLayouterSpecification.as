@@ -58,7 +58,7 @@ package se.gointeractive.layout
     }
     
     override protected function getLayouter
-      (container : Layoutable,
+      (container : LayoutParent,
        dimensions : Dimensions,
        elements : Sequence) : Layouter
     { return new RowLayouter(container, dimensions, elements); }

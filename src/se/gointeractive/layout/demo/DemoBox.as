@@ -1,10 +1,10 @@
 package se.gointeractive.layout.demo
 {
   import se.gointeractive.layout.Dimensions;
-  import se.gointeractive.layout.LayoutableElement;
+  import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.Rectangle;
   
-  public class DemoBox implements LayoutableElement
+  public class DemoBox implements LayoutElement
   {
     public var canvas : Canvas;
     private var dimensions : Dimensions;

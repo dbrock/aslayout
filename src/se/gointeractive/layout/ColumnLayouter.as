@@ -5,7 +5,7 @@ package se.gointeractive.layout
   public class ColumnLayouter extends LinearLayouter
   {
     public function ColumnLayouter
-      (parent : Layoutable, dimensions : Dimensions, elements : Sequence)
+      (parent : LayoutParent, dimensions : Dimensions, elements : Sequence)
     { super(parent, dimensions, elements); }
     
     override protected function getRemainingSpace

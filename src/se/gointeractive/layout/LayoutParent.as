@@ -2,9 +2,10 @@ package se.gointeractive.layout
 {
   import org.asspec.util.sequences.Sequence;
   
-  public interface Layoutable
+  public interface LayoutParent
   {
     function moveElement
-      (element : LayoutableElement, position : Position) : void;
+      (element : LayoutElement,
+       position : Position) : void;
   }
 }

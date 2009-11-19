@@ -5,13 +5,13 @@ package se.gointeractive.layout.demo
   import org.asspec.util.sequences.Sequence;
   
   import se.gointeractive.layout.Dimensions;
-  import se.gointeractive.layout.Layoutable;
-  import se.gointeractive.layout.LayoutableElement;
+  import se.gointeractive.layout.LayoutParent;
+  import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.Position;
   import se.gointeractive.layout.RowLayouter;
   import se.gointeractive.layout.container.Container;
   
-  public class DemoApplication extends Sprite implements Layoutable
+  public class DemoApplication extends Sprite implements LayoutParent
   {
     private const box1 : DemoBox = getBox(50, 50);
     private const box2 : DemoBox = getBox(50, 100);
@@ -36,7 +36,7 @@ package se.gointeractive.layout.demo
     { return Sequence.of(box1, box2); }
     
     public function moveElement
-      (element : LayoutableElement, position : Position) : void
+      (element : LayoutElement, position : Position) : void
     { DemoBox(element).canvas.position = position; }
     
     private function getBox(width : Number, height : Number) : DemoBox

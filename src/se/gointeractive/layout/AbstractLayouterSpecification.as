@@ -31,7 +31,7 @@ package se.gointeractive.layout
     
     protected function execute_layout(width : Number, height : Number) : void
     {
-      const parent : Layoutable = new FakeParent;
+      const parent : LayoutParent = new FakeParent;
       const dimensions : Dimensions = Dimensions.of(width, height);
       const elements : Sequence = elementContainer.sequence;
       
@@ -39,7 +39,7 @@ package se.gointeractive.layout
     }
     
     protected function getLayouter
-      (parent : Layoutable,
+      (parent : LayoutParent,
        dimensions : Dimensions,
        elements : Sequence) : Layouter
     { throw new Error; }

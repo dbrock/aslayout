@@ -1,5 +1,5 @@
 package se.gointeractive.layout
 {
-  public interface LayoutableElement
+  public interface LayoutElement
   { function get preferredDimensions() : Dimensions; }
 }

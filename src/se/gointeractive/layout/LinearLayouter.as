@@ -4,18 +4,18 @@ package se.gointeractive.layout
   
   public class LinearLayouter implements Layouter
   {
-    private var container : Layoutable;
+    private var parent : LayoutParent;
     private var dimensions : Dimensions;
     private var elements : Sequence;
     
     protected var space : Rectangle;
 
     public function LinearLayouter
-      (container : Layoutable,
+      (parent : LayoutParent,
        dimensions : Dimensions,
        elements : Sequence)
     {
-      this.container = container;
+      this.parent = parent;
       this.dimensions = dimensions;
       this.elements = elements;
     }
@@ -29,7 +29,7 @@ package se.gointeractive.layout
     private function reset() : void
     { space = dimensions.asRectangle; }
     
-    private function tryPacking(element : LayoutableElement) : void
+    private function tryPacking(element : LayoutElement) : void
     {
       if (elementFits(element))
         pack(element);
@@ -37,16 +37,16 @@ package se.gointeractive.layout
         throw new Error;
     }
     
-    private function elementFits(element : LayoutableElement) : Boolean
+    private function elementFits(element : LayoutElement) : Boolean
     { return element.preferredDimensions.fitsInside(space.dimensions); }
     
-    private function pack(element : LayoutableElement) : void
+    private function pack(element : LayoutElement) : void
     {
       const position : Position = space.position;
       
       allocate(element.preferredDimensions);
       
-      container.moveElement(element, position);
+      parent.moveElement(element, position);
     }
     
     private function allocate(dimensions : Dimensions) : void
