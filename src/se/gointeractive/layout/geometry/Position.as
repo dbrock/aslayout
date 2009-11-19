@@ -1,4 +1,4 @@
-package se.gointeractive.layout
+package se.gointeractive.layout.geometry
 {
   import org.asspec.util.EqualityComparable;
   

@@ -1,6 +1,8 @@
 package se.gointeractive.layout
 {
   import org.asspec.util.sequences.Sequence;
+  
+  import se.gointeractive.layout.geometry.Dimensions;
 
   public class RowLayouterSpecification extends AbstractLayouterSpecification
   {

@@ -4,6 +4,8 @@ package se.gointeractive.layout
   import org.asspec.util.sequences.ArraySequenceContainer;
   import org.asspec.util.sequences.Sequence;
   import org.asspec.util.sequences.SequenceContainer;
+  
+  import se.gointeractive.layout.geometry.Dimensions;
 
   public class AbstractLayouterSpecification extends AbstractSpecification
   {

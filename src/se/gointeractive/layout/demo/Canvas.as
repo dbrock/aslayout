@@ -3,9 +3,9 @@ package se.gointeractive.layout.demo
   import flash.display.Graphics;
   import flash.display.Sprite;
   
-  import se.gointeractive.layout.Position;
-  import se.gointeractive.layout.Rectangle;
   import se.gointeractive.layout.container.Positionable;
+  import se.gointeractive.layout.geometry.Position;
+  import se.gointeractive.layout.geometry.Rectangle;
   
   public class Canvas implements Positionable
   {

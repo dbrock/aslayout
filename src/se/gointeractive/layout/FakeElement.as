@@ -1,5 +1,8 @@
 package se.gointeractive.layout
 {
+  import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.geometry.Position;
+  
   public class FakeElement implements LayoutElement
   {
     private var _dimensions : Dimensions;

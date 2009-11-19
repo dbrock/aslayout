@@ -1,8 +1,7 @@
 package se.gointeractive.layout.demo
 {
-  import se.gointeractive.layout.Dimensions;
   import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.Rectangle;
+  import se.gointeractive.layout.geometry.Dimensions;
   
   public class DemoBox implements LayoutElement
   {

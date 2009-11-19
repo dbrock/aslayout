@@ -4,12 +4,12 @@ package se.gointeractive.layout.demo
   
   import org.asspec.util.sequences.Sequence;
   
-  import se.gointeractive.layout.Dimensions;
-  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.Position;
+  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.RowLayouter;
   import se.gointeractive.layout.container.Container;
+  import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.geometry.Position;
   
   public class DemoApplication extends Sprite implements LayoutParent
   {

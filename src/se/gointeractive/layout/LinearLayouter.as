@@ -2,6 +2,10 @@ package se.gointeractive.layout
 {
   import org.asspec.util.sequences.Sequence;
   
+  import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.geometry.Position;
+  import se.gointeractive.layout.geometry.Rectangle;
+  
   public class LinearLayouter implements Layouter
   {
     private var parent : LayoutParent;
