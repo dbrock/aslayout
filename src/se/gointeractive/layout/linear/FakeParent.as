@@ -1,5 +1,7 @@
-package se.gointeractive.layout
+package se.gointeractive.layout.linear
 {
+  import se.gointeractive.layout.LayoutElement;
+  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.geometry.Position;
 
   public class FakeParent implements LayoutParent

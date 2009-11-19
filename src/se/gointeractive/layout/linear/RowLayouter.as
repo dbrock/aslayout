@@ -1,14 +1,15 @@
-package se.gointeractive.layout
+package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
+  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
   import se.gointeractive.layout.geometry.Rectangle;
   
-  public class ColumnLayouter extends LinearLayouter
+  public class RowLayouter extends LinearLayouter
   {
-    public function ColumnLayouter
+    public function RowLayouter
       (parent : LayoutParent, dimensions : Dimensions, elements : Sequence)
     { super(parent, dimensions, elements); }
     
@@ -16,11 +17,11 @@ package se.gointeractive.layout
       (dimensions : Dimensions) : Rectangle
     {
       const newDimensions : Dimensions = Dimensions.of
-        (space.dimensions.width,
-         space.dimensions.height - dimensions.height)
+        (space.dimensions.width - dimensions.width,
+         space.dimensions.height)
       const newPosition : Position = Position.of
-        (space.position.x,
-         space.position.y + dimensions.height);
+        (space.position.x + dimensions.width,
+         space.position.y);
       
       return newDimensions.rectangleAt(newPosition);
     }

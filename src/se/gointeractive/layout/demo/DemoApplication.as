@@ -6,10 +6,10 @@ package se.gointeractive.layout.demo
   
   import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.LayoutParent;
-  import se.gointeractive.layout.RowLayouter;
   import se.gointeractive.layout.container.Container;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
+  import se.gointeractive.layout.linear.RowLayouter;
   
   public class DemoApplication extends Sprite implements LayoutParent
   {

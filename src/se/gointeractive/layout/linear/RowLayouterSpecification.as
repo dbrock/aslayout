@@ -1,7 +1,8 @@
-package se.gointeractive.layout
+package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
+  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.geometry.Dimensions;
 
   public class RowLayouterSpecification extends AbstractLayouterSpecification
@@ -53,7 +54,7 @@ package se.gointeractive.layout
         const element2 : FakeElement = add_element(100, 100);
         
         execute_layout(200, 200);
-                
+        
         specify(element1.position).should.look_like("(0, 0)");
         specify(element2.position).should.look_like("(100, 0)");
       });

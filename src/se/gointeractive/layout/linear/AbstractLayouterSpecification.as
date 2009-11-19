@@ -1,10 +1,11 @@
-package se.gointeractive.layout
+package se.gointeractive.layout.linear
 {
   import org.asspec.specification.AbstractSpecification;
   import org.asspec.util.sequences.ArraySequenceContainer;
   import org.asspec.util.sequences.Sequence;
   import org.asspec.util.sequences.SequenceContainer;
   
+  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.geometry.Dimensions;
 
   public class AbstractLayouterSpecification extends AbstractSpecification
@@ -45,6 +46,5 @@ package se.gointeractive.layout
        dimensions : Dimensions,
        elements : Sequence) : Layouter
     { throw new Error; }
-    
   }
 }

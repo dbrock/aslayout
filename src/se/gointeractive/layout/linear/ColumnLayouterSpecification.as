@@ -1,7 +1,8 @@
-package se.gointeractive.layout
+package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
+  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.geometry.Dimensions;
 
   public class ColumnLayouterSpecification
