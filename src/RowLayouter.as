@@ -3,10 +3,10 @@ package
   import org.asspec.util.sequences.ArraySequenceContainer;
   import org.asspec.util.sequences.SequenceContainer;
   
-  public class RowLayout extends LinearLayout
+  public class RowLayouter extends LinearLayouter
   {
-    public function RowLayout(dimensions : Dimensions)
-    { super(dimensions); }
+    public function RowLayouter(container : Layoutable)
+    { super(container); }
     
     override protected function getRemainingSpace
       (dimensions : Dimensions) : Rectangle

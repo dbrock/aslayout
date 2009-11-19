@@ -6,8 +6,8 @@ package
   {
     override protected function populate() : void
     {
-      add(RowLayoutSpecification);
-      add(ColumnLayoutSpecification);
+      add(RowLayouterSpecification);
+      add(ColumnLayouterSpecification);
     }
   }
 }

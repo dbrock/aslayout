@@ -1,41 +1,42 @@
 package
 {
-  import org.asspec.util.sequences.ArraySequenceContainer;
-  import org.asspec.util.sequences.SequenceContainer;
+  import org.asspec.util.sequences.Sequence;
   
-  public class LinearLayout
+  public class LinearLayouter implements Layouter
   {
-    private const elements : SequenceContainer = new ArraySequenceContainer;
-    private var dimensions : Dimensions;
+    private var container : Layoutable;
     
     protected var space : Rectangle;
 
-    public function LinearLayout(dimensions : Dimensions)
-    { this.dimensions = dimensions; }
+    public function LinearLayouter(container : Layoutable)
+    { this.container = container; }
     
-    public function add(element : Layoutable) : void
-    { elements.add(element); }
+    private function get elements() : Sequence
+    { return container.elements; }
+    
+    private function get dimensions() : Dimensions
+    { return container.dimensions; }
     
     public function execute() : void
     {
       reset();
       
-      for each (var element : Layoutable in elements)
+      for each (var element : LayoutableElement in elements)
         pack(element);
     }
     
     private function reset() : void
     { space = dimensions.rectangleAt(Position.of(0, 0)); }
     
-    private function pack(element : Layoutable) : void
+    private function pack(element : LayoutableElement) : void
     {
       if (fits(element))
-        element.bounds = allocate(element.dimensions);
+        container.moveElement(element, allocate(element.dimensions).position);
       else
         throw new Error;
     }
     
-    private function fits(element : Layoutable) : Boolean
+    private function fits(element : LayoutableElement) : Boolean
     { return element.dimensions.fitsInside(space.dimensions); }
     
     private function allocate(dimensions : Dimensions) : Rectangle

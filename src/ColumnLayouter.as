@@ -1,9 +1,9 @@
 package
 {
-  public class ColumnLayout extends LinearLayout
+  public class ColumnLayouter extends LinearLayouter
   {
-    public function ColumnLayout(dimensions : Dimensions)
-    { super(dimensions); }
+    public function ColumnLayouter(container : Layoutable)
+    { super(container); }
     
     override protected function getRemainingSpace
       (dimensions : Dimensions) : Rectangle
