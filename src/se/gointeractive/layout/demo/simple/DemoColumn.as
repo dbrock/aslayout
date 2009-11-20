@@ -1,5 +1,6 @@
 package se.gointeractive.layout.demo.simple
 {
+  import se.gointeractive.layout.flash.VBox;
   import se.gointeractive.layout.geometry.Dimensions;
   
   public class DemoColumn extends VBox

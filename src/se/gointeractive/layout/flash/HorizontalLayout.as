@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo.simple
+package se.gointeractive.layout.flash
 {
   public class HorizontalLayout extends AbstractLayout
   {

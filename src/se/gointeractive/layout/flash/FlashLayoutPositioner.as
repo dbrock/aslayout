@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo.simple
+package se.gointeractive.layout.flash
 {
   import flash.display.DisplayObject;
   
@@ -6,7 +6,7 @@ package se.gointeractive.layout.demo.simple
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Position;
 
-  public class FlashLayoutParent implements LayoutPositioner
+  public class FlashLayoutPositioner implements LayoutPositioner
   {
     public function moveElement
       (element : LayoutElement, position : Position) : void

@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo.simple
+package se.gointeractive.layout.flash
 {
   import flash.display.DisplayObject;
   

@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo.simple
+package se.gointeractive.layout.flash
 {
   import org.asspec.util.sequences.Sequence;
   
@@ -20,6 +20,9 @@ package se.gointeractive.layout.demo.simple
     { LinearLayouter.layoutVertically(getRequest(elements)); }
     
     private function getRequest(elements : Sequence) : LayoutRequest
-    { return new LayoutRequest(new FlashLayoutParent, dimensions, elements); }
+    {
+      return new LayoutRequest
+        (new FlashLayoutPositioner, dimensions, elements);
+    }
   }
 }

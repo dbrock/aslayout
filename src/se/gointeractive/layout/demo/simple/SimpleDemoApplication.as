@@ -2,8 +2,7 @@ package se.gointeractive.layout.demo.simple
 {
   import flash.display.Sprite;
   
-  import org.asspec.util.sequences.Sequence;
-  
+  import se.gointeractive.layout.flash.HBox;
   import se.gointeractive.layout.geometry.Dimensions;
   
   public class SimpleDemoApplication extends HBox
