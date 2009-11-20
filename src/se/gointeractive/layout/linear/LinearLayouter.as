@@ -7,16 +7,14 @@ package se.gointeractive.layout.linear
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
-  import se.gointeractive.layout.geometry.Rectangle;
   
   public class LinearLayouter implements Layouter
   {
     private var positioner : LayoutPositioner;
     private var dimensions : Dimensions;
     private var elements : Sequence;
-    private var plan : LinearDimensionsPlan;
     
-    private var allocatedSpace : Number;
+    private var allocatedSpace : Number = 0;
 
     public function LinearLayouter
       (parent : LayoutPositioner,
@@ -32,49 +30,57 @@ package se.gointeractive.layout.linear
     
     public function execute() : void
     {
-      reset();
-      elements.forEach(pack);
+      resizeFlexibleElements();
+      repositionElements();
     }
     
-    private function reset() : void
-    {
-      allocatedSpace = 0;
-      plan = new LinearDimensionsPlan(totalSpace, elements, getDimensionPicker());
-    }
+    private function resizeFlexibleElements() : void
+    { flexibleElements.forEach(resizeElement); }
     
-    private function get totalSpace() : Number
-    { return picker.getPrimaryDimension(dimensions); }
+    private function get flexibleElements() : Sequence
+    { return elements.filter(isFlexible); }
     
-    private function pack(element : LayoutElement) : void
+    private function isFlexible(element : LayoutElement) : Boolean
+    { return element is FlexibleLayoutElement; }
+    
+    private function repositionElements() : void
+    { elements.forEach(packElement); }
+    
+    // ----------------------------------------------------
+    
+    private function resizeElement(element : FlexibleLayoutElement) : void
+    { element.allocatedDimensions = getDimensions(element); }
+    
+    private function getDimensions
+      (element : FlexibleLayoutElement) : Dimensions
+    { return picker.getDimensions(getSize(element), totalSecondarySpace); }
+    
+    private function getSize(element : LayoutElement) : Number
+    { return plan.getPrimarySize(element); }
+    
+    // ----------------------------------------------------
+    
+    private function packElement(element : LayoutElement) : void
     {
       positioner.moveElement(element, currentPosition);
-      
-      allocatedSpace += plan.getSize(element);
-      
-      if (element is FlexibleLayoutElement)
-        setFlexibleSize(FlexibleLayoutElement(element));
+      allocatedSpace += getSize(element);
     }
-    
-    private function get secondarySize() : Number
-    { return picker.getSecondaryDimension(dimensions); }
     
     private function get currentPosition() : Position
     { return picker.getDimensions(allocatedSpace, 0).asPosition; }
+      
+    // ----------------------------------------------------
     
-    private function setFlexibleSize(element : FlexibleLayoutElement) : void
-    { element.allocatedDimensions = getFlexibleSize(element); }
+    private function get totalPrimarySpace() : Number
+    { return picker.getPrimaryDimension(dimensions); }
     
-    private function getFlexibleSize
-      (element : FlexibleLayoutElement) : Dimensions
-    { return picker.getDimensions(plan.getSize(element), totalSecondarySize); }
-    
-    private function get totalSecondarySize() : Number
+    private function get totalSecondarySpace() : Number
     { return picker.getSecondaryDimension(dimensions); }
     
-    private function get picker() : DimensionPicker
-    { return getDimensionPicker(); }
+    private function get plan() : LinearDimensionsPlan
+    { return new LinearDimensionsPlan(totalPrimarySpace, elements, picker); }
     
-    protected function getDimensionPicker() : DimensionPicker
+    protected function get picker() : DimensionPicker
     { throw new Error; }
   }
 }

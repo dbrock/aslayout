@@ -25,7 +25,7 @@ package se.gointeractive.layout.linear
         throw new Error;
     }
     
-    public function getSize(element : LayoutElement) : Number
+    public function getPrimarySize(element : LayoutElement) : Number
     {
       if (element is RigidLayoutElement)
         return getRigidSize(element);

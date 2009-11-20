@@ -13,7 +13,7 @@ package se.gointeractive.layout.linear
       (parent : LayoutPositioner, dimensions : Dimensions, elements : Sequence)
     { super(parent, dimensions, elements); }
     
-    override protected function getDimensionPicker() : DimensionPicker
+    override protected function get picker() : DimensionPicker
     { return new WidthPicker; }
   }
 }
