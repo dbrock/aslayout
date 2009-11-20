@@ -3,9 +3,8 @@ package se.gointeractive.layout.demo.simple
   import org.asspec.util.sequences.Sequence;
   
   import se.gointeractive.layout.geometry.Dimensions;
-  import se.gointeractive.layout.linear.ColumnLayouter;
   import se.gointeractive.layout.linear.LayoutRequest;
-  import se.gointeractive.layout.linear.RowLayouter;
+  import se.gointeractive.layout.linear.LinearLayouter;
   
   public class FlashLayouter
   {
@@ -15,9 +14,12 @@ package se.gointeractive.layout.demo.simple
     { this.dimensions = dimensions; }
     
     public function layoutHorizontally(elements : Sequence) : void
-    { new RowLayouter(new LayoutRequest(new FlashLayoutParent, dimensions, elements)).execute(); }
+    { LinearLayouter.layoutHorizontally(getRequest(elements)); }
 
     public function layoutVertically(elements : Sequence) : void
-    { new ColumnLayouter(new LayoutRequest(new FlashLayoutParent, dimensions, elements)).execute(); }
+    { LinearLayouter.layoutVertically(getRequest(elements)); }
+    
+    private function getRequest(elements : Sequence) : LayoutRequest
+    { return new LayoutRequest(new FlashLayoutParent, dimensions, elements); }
   }
 }

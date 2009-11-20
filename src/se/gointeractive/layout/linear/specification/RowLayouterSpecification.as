@@ -1,7 +1,7 @@
 package se.gointeractive.layout.linear.specification
 {
   import se.gointeractive.layout.linear.LayoutRequest;
-  import se.gointeractive.layout.linear.RowLayouter;
+  import se.gointeractive.layout.linear.LinearLayouter;
 
   internal class RowLayouterSpecification
     extends AbstractLayouterSpecification
@@ -69,6 +69,6 @@ package se.gointeractive.layout.linear.specification
     }
     
     override protected function layout(request : LayoutRequest) : void
-    { new RowLayouter(request).execute(); }
+    { LinearLayouter.layoutHorizontally(request); }
   }
 }

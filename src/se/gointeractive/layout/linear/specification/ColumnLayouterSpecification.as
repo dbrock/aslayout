@@ -1,7 +1,7 @@
 package se.gointeractive.layout.linear.specification
 {
-  import se.gointeractive.layout.linear.ColumnLayouter;
   import se.gointeractive.layout.linear.LayoutRequest;
+  import se.gointeractive.layout.linear.LinearLayouter;
 
   internal class ColumnLayouterSpecification
     extends AbstractLayouterSpecification
@@ -20,6 +20,6 @@ package se.gointeractive.layout.linear.specification
     }
     
     override protected function layout(request : LayoutRequest) : void
-    { new ColumnLayouter(request).execute(); }
+    { LinearLayouter.layoutVertically(request); }
   }
 }

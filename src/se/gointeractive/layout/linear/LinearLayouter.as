@@ -4,7 +4,7 @@ package se.gointeractive.layout.linear
   import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
   
-  internal class LinearLayouter
+  public class LinearLayouter
   {
     private var request : LayoutRequest;
     private var alignment : Alignment;
@@ -48,5 +48,13 @@ package se.gointeractive.layout.linear
     
     private function get totalSecondarySpace() : Number
     { return alignment.getSecondaryDimension(request.dimensions); }
+    
+    // ----------------------------------------------------
+    
+    public static function layoutHorizontally(request : LayoutRequest) : void
+    { new LinearLayouter(request, new HorizontalAlignment).execute(); }
+    
+    public static function layoutVertically(request : LayoutRequest) : void
+    { new LinearLayouter(request, new VerticalAlignment).execute(); }
   }
 }

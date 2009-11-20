@@ -7,7 +7,7 @@ package se.gointeractive.layout.demo.clean
   import se.gointeractive.layout.container.Container;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.linear.LayoutRequest;
-  import se.gointeractive.layout.linear.RowLayouter;
+  import se.gointeractive.layout.linear.LinearLayouter;
   
   public class CleanDemoApplication extends Sprite
   {
@@ -26,7 +26,8 @@ package se.gointeractive.layout.demo.clean
       addChild(spriteRepository.get(box1).sprite);
       addChild(spriteRepository.get(box2).sprite);
       
-      new RowLayouter(new LayoutRequest(container, dimensions, elements)).execute();
+      LinearLayouter.layoutHorizontally
+        (new LayoutRequest(container, dimensions, elements));
     }
     
     public function get dimensions() : Dimensions
