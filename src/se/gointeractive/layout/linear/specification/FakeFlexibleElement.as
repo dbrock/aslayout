@@ -1,9 +1,9 @@
-package se.gointeractive.layout.linear
+package se.gointeractive.layout.linear.specification
 {
   import se.gointeractive.layout.FlexibleLayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
 
-  public class FakeFlexibleElement
+  internal class FakeFlexibleElement
     extends FakeElement implements FlexibleLayoutElement
   {
     private var _allocatedDimensions : Dimensions;

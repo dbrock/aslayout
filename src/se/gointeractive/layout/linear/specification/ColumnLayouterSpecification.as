@@ -1,11 +1,13 @@
-package se.gointeractive.layout.linear
+package se.gointeractive.layout.linear.specification
 {
   import org.asspec.util.sequences.Sequence;
   
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.linear.ColumnLayouter;
+  import se.gointeractive.layout.linear.Layouter;
 
-  public class ColumnLayouterSpecification
+  internal class ColumnLayouterSpecification
     extends AbstractLayouterSpecification
   {
     override protected function execute() : void

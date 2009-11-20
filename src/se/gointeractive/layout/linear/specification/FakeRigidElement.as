@@ -1,10 +1,10 @@
-package se.gointeractive.layout.linear
+package se.gointeractive.layout.linear.specification
 {
   import se.gointeractive.layout.RigidLayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
   
-  public class FakeRigidElement
+  internal class FakeRigidElement
     extends FakeElement implements RigidLayoutElement
   {
     private var _dimensions : Dimensions;

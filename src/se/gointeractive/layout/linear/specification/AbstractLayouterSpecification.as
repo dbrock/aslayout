@@ -1,4 +1,4 @@
-package se.gointeractive.layout.linear
+package se.gointeractive.layout.linear.specification
 {
   import org.asspec.specification.AbstractSpecification;
   import org.asspec.util.sequences.ArraySequenceContainer;
@@ -7,8 +7,9 @@ package se.gointeractive.layout.linear
   
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.linear.Layouter;
 
-  public class AbstractLayouterSpecification extends AbstractSpecification
+  internal class AbstractLayouterSpecification extends AbstractSpecification
   {
     private var layouter : Layouter;
     private var parent : FakePositioner;
