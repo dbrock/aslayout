@@ -8,6 +8,7 @@ package se.gointeractive.layout.linear.specification
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.linear.LayoutRequest;
+  import se.gointeractive.layout.linear.LinearLayouter;
 
   internal class AbstractLayouterSpecification extends AbstractSpecification
   {
@@ -36,16 +37,22 @@ package se.gointeractive.layout.linear.specification
       return element;
     }
     
-    protected function execute_layout(width : Number, height : Number) : void
+    protected function layout_horizontally
+      (width : Number, height : Number) : void
+    { LinearLayouter.layoutHorizontally(getRequest(width, height)); }
+    
+    protected function layout_vertically
+      (width : Number, height : Number) : void
+    { LinearLayouter.layoutVertically(getRequest(width, height)); }
+    
+    private function getRequest
+      (width : Number, height : Number) : LayoutRequest
     {
       const parent : LayoutPositioner = new FakePositioner;
       const dimensions : Dimensions = Dimensions.of(width, height);
       const elements : Sequence = elementContainer.sequence;
       
-      layout(new LayoutRequest(parent, dimensions, elements));
+      return new LayoutRequest(parent, dimensions, elements);
     }
-    
-    protected function layout(request : LayoutRequest) : void
-    { throw new Error; }
   }
 }
