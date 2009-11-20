@@ -79,6 +79,19 @@ package se.gointeractive.layout.linear.specification
         specify(element1.allocatedDimensions).should.look_like("100x200");
         specify(element2.allocatedDimensions).should.look_like("100x200");
       });
+      
+      it("should layout mixed elements correctly", function () : void {
+        const element1 : FakeRigidElement = add_element(20, 20);
+        const element2 : FakeFlexibleElement = add_flexible_element();
+        const element3 : FakeRigidElement = add_element(40, 40);
+        
+        layout_horizontally(200, 200);
+        
+        specify(element1.position).should.look_like("(0, 0)");
+        specify(element2.position).should.look_like("(20, 0)");
+        specify(element3.position).should.look_like("(160, 0)");
+        specify(element2.allocatedDimensions).should.look_like("140x200");
+      });
     }
   }
 }
