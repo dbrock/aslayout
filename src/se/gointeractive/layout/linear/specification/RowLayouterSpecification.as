@@ -1,9 +1,6 @@
 package se.gointeractive.layout.linear.specification
 {
-  import org.asspec.util.sequences.Sequence;
-  
-  import se.gointeractive.layout.LayoutPositioner;
-  import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.linear.LayoutRequest;
   import se.gointeractive.layout.linear.RowLayouter;
 
   internal class RowLayouterSpecification
@@ -71,10 +68,7 @@ package se.gointeractive.layout.linear.specification
       });
     }
     
-    override protected function layout
-      (container : LayoutPositioner,
-       dimensions : Dimensions,
-       elements : Sequence) : void
-    { new RowLayouter(container, dimensions, elements).execute(); }
+    override protected function layout(request : LayoutRequest) : void
+    { new RowLayouter(request).execute(); }
   }
 }

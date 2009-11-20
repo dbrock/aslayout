@@ -4,28 +4,23 @@ package se.gointeractive.layout.linear
   
   import se.gointeractive.layout.FlexibleLayoutElement;
   import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
   
-  public class LinearLayouter
+  internal class LinearLayouter
   {
-    private var positioner : LayoutPositioner;
-    private var dimensions : Dimensions;
-    private var elements : Sequence;
+    private var request : LayoutRequest;
+    private var alignment : Alignment;
     
     private var allocatedSpace : Number = 0;
 
     public function LinearLayouter
-      (parent : LayoutPositioner,
-       dimensions : Dimensions,
-       elements : Sequence)
+      (request : LayoutRequest, alignment : Alignment)
     {
-      this.positioner = parent;
-      this.dimensions = dimensions;
-      this.elements = elements;
+      this.request = request;
+      this.alignment = alignment;
       
-      elements.ensureType(LayoutElement);
+      request.elements.ensureType(LayoutElement);
     }
     
     public function execute() : void
@@ -38,13 +33,13 @@ package se.gointeractive.layout.linear
     { flexibleElements.forEach(resizeElement); }
     
     private function get flexibleElements() : Sequence
-    { return elements.filter(isFlexible); }
+    { return request.elements.filter(isFlexible); }
     
     private function isFlexible(element : LayoutElement) : Boolean
     { return element is FlexibleLayoutElement; }
     
     private function repositionElements() : void
-    { elements.forEach(packElement); }
+    { request.elements.forEach(packElement); }
     
     // ----------------------------------------------------
     
@@ -56,13 +51,13 @@ package se.gointeractive.layout.linear
     { return alignment.getDimensions(getSize(element), totalSecondarySpace); }
     
     private function getSize(element : LayoutElement) : Number
-    { return plan.getPrimarySize(element); }
+    { return dimensioner.getPrimarySize(element); }
     
     // ----------------------------------------------------
     
     private function packElement(element : LayoutElement) : void
     {
-      positioner.moveElement(element, currentPosition);
+      request.positioner.moveElement(element, currentPosition);
       allocatedSpace += getSize(element);
     }
     
@@ -72,15 +67,12 @@ package se.gointeractive.layout.linear
     // ----------------------------------------------------
     
     private function get totalPrimarySpace() : Number
-    { return alignment.getPrimaryDimension(dimensions); }
+    { return alignment.getPrimaryDimension(request.dimensions); }
     
     private function get totalSecondarySpace() : Number
-    { return alignment.getSecondaryDimension(dimensions); }
+    { return alignment.getSecondaryDimension(request.dimensions); }
     
-    private function get plan() : Dimensioner
-    { return new Dimensioner(totalPrimarySpace, elements, alignment); }
-    
-    protected function get alignment() : Alignment
-    { throw new Error; }
+    private function get dimensioner() : Dimensioner
+    { return new Dimensioner(totalPrimarySpace, request.elements, alignment); }
   }
 }

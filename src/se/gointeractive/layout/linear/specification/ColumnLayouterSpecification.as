@@ -1,10 +1,7 @@
 package se.gointeractive.layout.linear.specification
 {
-  import org.asspec.util.sequences.Sequence;
-  
-  import se.gointeractive.layout.LayoutPositioner;
-  import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.linear.ColumnLayouter;
+  import se.gointeractive.layout.linear.LayoutRequest;
 
   internal class ColumnLayouterSpecification
     extends AbstractLayouterSpecification
@@ -22,10 +19,7 @@ package se.gointeractive.layout.linear.specification
       });
     }
     
-    override protected function layout
-      (container : LayoutPositioner,
-       dimensions : Dimensions,
-       elements : Sequence) : void
-    { new ColumnLayouter(container, dimensions, elements).execute(); }
+    override protected function layout(request : LayoutRequest) : void
+    { new ColumnLayouter(request).execute(); }
   }
 }
