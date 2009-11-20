@@ -53,7 +53,7 @@ package se.gointeractive.layout.linear
     
     private function getDimensions
       (element : FlexibleLayoutElement) : Dimensions
-    { return picker.getDimensions(getSize(element), totalSecondarySpace); }
+    { return alignment.getDimensions(getSize(element), totalSecondarySpace); }
     
     private function getSize(element : LayoutElement) : Number
     { return plan.getPrimarySize(element); }
@@ -67,20 +67,20 @@ package se.gointeractive.layout.linear
     }
     
     private function get currentPosition() : Position
-    { return picker.getDimensions(allocatedSpace, 0).asPosition; }
+    { return alignment.getDimensions(allocatedSpace, 0).asPosition; }
       
     // ----------------------------------------------------
     
     private function get totalPrimarySpace() : Number
-    { return picker.getPrimaryDimension(dimensions); }
+    { return alignment.getPrimaryDimension(dimensions); }
     
     private function get totalSecondarySpace() : Number
-    { return picker.getSecondaryDimension(dimensions); }
+    { return alignment.getSecondaryDimension(dimensions); }
     
-    private function get plan() : LinearDimensionsPlan
-    { return new LinearDimensionsPlan(totalPrimarySpace, elements, picker); }
+    private function get plan() : Dimensioner
+    { return new Dimensioner(totalPrimarySpace, elements, alignment); }
     
-    protected function get picker() : DimensionPicker
+    protected function get alignment() : Alignment
     { throw new Error; }
   }
 }

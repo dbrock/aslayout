@@ -6,51 +6,54 @@ package se.gointeractive.layout.linear
   import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.RigidLayoutElement;
   
-  public class LinearDimensionsPlan
+  internal class Dimensioner
   {
     private var totalSpace : Number;
     private var elements : Sequence;
-    private var picker : DimensionPicker;
+    private var alignment : Alignment;
     
-    public function LinearDimensionsPlan
+    public function Dimensioner
       (totalSpace : Number,
        elements : Sequence,
-       picker : DimensionPicker)
+       alignment : Alignment)
     {
       this.totalSpace = totalSpace;
       this.elements = elements;
-      this.picker = picker;
+      this.alignment = alignment;
       
-      if (rigidSpace > totalSpace)
+      if (totalRigidSpace > totalSpace)
         throw new Error;
     }
     
     public function getPrimarySize(element : LayoutElement) : Number
     {
       if (element is RigidLayoutElement)
-        return getRigidSize(element);
+        return getRigidSize(RigidLayoutElement(element));
       else if (element is FlexibleLayoutElement)
-        return flexibleSpace / flexibleElementCount;
+        return flexibleSize;
       else
         throw new Error;
     }
     
-    private function get flexibleSpace() : Number
-    { return totalSpace - rigidSpace; }
+    private function getRigidSize(element : RigidLayoutElement) : Number
+    { return alignment.getPrimaryDimension(element.preferredDimensions); }
     
-    private function get rigidSpace() : Number
+    private function get flexibleSize() : Number
+    { return totalFlexibleSpace / flexibleElementCount; }
+    
+    private function get totalFlexibleSpace() : Number
+    { return totalSpace - totalRigidSpace; }
+    
+    private function get totalRigidSpace() : Number
     {
       var result : Number = 0;
       
       for each (var element : LayoutElement in elements)
         if (element is RigidLayoutElement)
-          result += getRigidSize(element);
+          result += getRigidSize(RigidLayoutElement(element));
       
       return result; 
     }
-    
-    private function getRigidSize(element : LayoutElement) : Number
-    { return picker.getPrimaryDimension(RigidLayoutElement(element).preferredDimensions); }
     
     private function get flexibleElementCount() : uint
     {

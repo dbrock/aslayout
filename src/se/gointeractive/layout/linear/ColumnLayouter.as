@@ -10,10 +10,12 @@ package se.gointeractive.layout.linear
   public class ColumnLayouter extends LinearLayouter
   {
     public function ColumnLayouter
-      (parent : LayoutPositioner, dimensions : Dimensions, elements : Sequence)
+      (parent : LayoutPositioner,
+       dimensions : Dimensions,
+       elements : Sequence)
     { super(parent, dimensions, elements); }
     
-    override protected function get picker() : DimensionPicker
-    { return new HeightPicker; }
+    override protected function get alignment() : Alignment
+    { return new VerticalAlignment; }
   }
 }

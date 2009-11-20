@@ -2,7 +2,7 @@ package se.gointeractive.layout.linear
 {
   import se.gointeractive.layout.geometry.Dimensions;
   
-  public interface DimensionPicker
+  internal interface Alignment
   {
     function getPrimaryDimension(dimensions : Dimensions) : Number;
     function getSecondaryDimension(dimensions : Dimensions) : Number;
