@@ -12,7 +12,7 @@ package se.gointeractive.layout.linear.specification
     public function FakeRigidElement(dimensions : Dimensions)
     { _dimensions = dimensions; }
     
-    public function get preferredDimensions() : Dimensions
+    public function get rigidDimensions() : Dimensions
     { return _dimensions; }
   }
 }

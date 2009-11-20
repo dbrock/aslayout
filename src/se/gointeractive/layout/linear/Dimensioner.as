@@ -36,7 +36,7 @@ package se.gointeractive.layout.linear
     }
     
     private function getRigidSize(element : RigidLayoutElement) : Number
-    { return alignment.getPrimaryDimension(element.preferredDimensions); }
+    { return alignment.getPrimaryDimension(element.rigidDimensions); }
     
     private function get flexibleSize() : Number
     { return totalFlexibleSpace / flexibleElementCount; }

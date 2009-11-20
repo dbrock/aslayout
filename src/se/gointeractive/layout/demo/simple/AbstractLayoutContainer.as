@@ -25,7 +25,7 @@ package se.gointeractive.layout.demo.simple
     public function set dimensions(value : Dimensions) : void
     { layout.dimensions = value; }
     
-    public function get preferredDimensions() : Dimensions
+    public function get rigidDimensions() : Dimensions
     { return layout.dimensions; }
   }
 }

@@ -19,7 +19,7 @@ package se.gointeractive.layout.demo.clean
       canvas.drawRectangle(dimensions.asRectangle, color);
     }
     
-    public function get preferredDimensions() : Dimensions
+    public function get rigidDimensions() : Dimensions
     { return dimensions; }
   }
 }

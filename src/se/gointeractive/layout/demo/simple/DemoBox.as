@@ -20,7 +20,7 @@ package se.gointeractive.layout.demo.simple
       new FlashSprite(this).drawRectangle(dimensions.asRectangle, color);
     }
     
-    public function get preferredDimensions() : Dimensions
+    public function get rigidDimensions() : Dimensions
     { return dimensions; }
     
     public static function get(width : Number, height : Number) : DemoBox

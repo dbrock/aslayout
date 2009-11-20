@@ -6,7 +6,7 @@ package se.gointeractive.layout.container
   
   public class FakeElement implements RigidLayoutElement
   {
-    public function get preferredDimensions() : Dimensions
+    public function get rigidDimensions() : Dimensions
     { return null; }
   }
 }
