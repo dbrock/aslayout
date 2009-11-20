@@ -2,11 +2,11 @@ package se.gointeractive.layout.demo.simple
 {
   import flash.display.Sprite;
   
-  import se.gointeractive.layout.LayoutElement;
+  import se.gointeractive.layout.RigidLayoutElement;
   import se.gointeractive.layout.demo.clean.FlashSprite;
   import se.gointeractive.layout.geometry.Dimensions;
   
-  public class DemoBox extends Sprite implements LayoutElement
+  public class DemoBox extends Sprite implements RigidLayoutElement
   {
     private var dimensions : Dimensions;
     private var color : uint;

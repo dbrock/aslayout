@@ -3,10 +3,10 @@ package se.gointeractive.layout.demo.simple
   import flash.display.DisplayObject;
   import flash.display.Sprite;
   
-  import se.gointeractive.layout.LayoutElement;
+  import se.gointeractive.layout.RigidLayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
 
-  public class AbstractLayoutContainer extends Sprite implements LayoutElement
+  public class AbstractLayoutContainer extends Sprite implements RigidLayoutElement
   {
     private var layout : AbstractLayout;
     

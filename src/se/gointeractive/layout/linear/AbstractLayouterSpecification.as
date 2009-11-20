@@ -5,27 +5,31 @@ package se.gointeractive.layout.linear
   import org.asspec.util.sequences.Sequence;
   import org.asspec.util.sequences.SequenceContainer;
   
-  import se.gointeractive.layout.LayoutParent;
+  import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
 
   public class AbstractLayouterSpecification extends AbstractSpecification
   {
     private var layouter : Layouter;
-    private var parent : FakeParent;
+    private var parent : FakePositioner;
     
     private const elementContainer : SequenceContainer
       = new ArraySequenceContainer;
     
-    protected function use_layout(width : Number, height : Number) : void
+    protected function add_element
+      (width : Number, height : Number) : FakeRigidElement
     {
-      parent;
+      const element : FakeRigidElement
+        = new FakeRigidElement(Dimensions.of(width, height));
+      
+      elementContainer.add(element);
+      
+      return element;
     }
     
-    protected function add_element
-      (width : Number, height : Number) : FakeElement
+    protected function add_flexible_element() : FakeFlexibleElement
     {
-      const element : FakeElement
-        = new FakeElement(Dimensions.of(width, height));
+      const element : FakeFlexibleElement = new FakeFlexibleElement;
       
       elementContainer.add(element);
       
@@ -34,7 +38,7 @@ package se.gointeractive.layout.linear
     
     protected function execute_layout(width : Number, height : Number) : void
     {
-      const parent : LayoutParent = new FakeParent;
+      const parent : LayoutPositioner = new FakePositioner;
       const dimensions : Dimensions = Dimensions.of(width, height);
       const elements : Sequence = elementContainer.sequence;
       
@@ -42,7 +46,7 @@ package se.gointeractive.layout.linear
     }
     
     protected function getLayouter
-      (parent : LayoutParent,
+      (parent : LayoutPositioner,
        dimensions : Dimensions,
        elements : Sequence) : Layouter
     { throw new Error; }

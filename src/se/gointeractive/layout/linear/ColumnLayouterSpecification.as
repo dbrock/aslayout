@@ -2,7 +2,7 @@ package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
-  import se.gointeractive.layout.LayoutParent;
+  import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
 
   public class ColumnLayouterSpecification
@@ -11,8 +11,8 @@ package se.gointeractive.layout.linear
     override protected function execute() : void
     {
       it("should layout two elements correctly", function () : void {
-        const element1 : FakeElement = add_element(100, 100);
-        const element2 : FakeElement = add_element(100, 100);
+        const element1 : FakeRigidElement = add_element(100, 100);
+        const element2 : FakeRigidElement = add_element(100, 100);
         
         execute_layout(200, 200);
         
@@ -22,7 +22,7 @@ package se.gointeractive.layout.linear
     }
     
     override protected function getLayouter
-      (container : LayoutParent,
+      (container : LayoutPositioner,
        dimensions : Dimensions,
        elements : Sequence) : Layouter
     { return new ColumnLayouter(container, dimensions, elements); }

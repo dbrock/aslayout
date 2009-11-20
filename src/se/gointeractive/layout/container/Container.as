@@ -3,10 +3,10 @@ package se.gointeractive.layout.container
   import flash.utils.Dictionary;
   
   import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.LayoutParent;
+  import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Position;
   
-  public class Container implements LayoutParent
+  public class Container implements LayoutPositioner
   {
     private const elementContainer : Dictionary = new Dictionary;
     

@@ -24,6 +24,9 @@ package se.gointeractive.layout.geometry
     public function get asRectangle() : Rectangle
     { return rectangleAt(Position.ORIGIN); }
     
+    public function get asPosition() : Position
+    { return Position.of(width, height); }
+    
     public function fitsInside(container : Dimensions) : Boolean
     { return width <= container.width && height <= container.height; }
   }

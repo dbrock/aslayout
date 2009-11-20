@@ -3,10 +3,10 @@ package se.gointeractive.layout.demo.simple
   import flash.display.DisplayObject;
   
   import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.LayoutParent;
+  import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Position;
 
-  public class FlashLayoutParent implements LayoutParent
+  public class FlashLayoutParent implements LayoutPositioner
   {
     public function moveElement
       (element : LayoutElement, position : Position) : void

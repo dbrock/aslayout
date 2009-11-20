@@ -2,7 +2,7 @@ package se.gointeractive.layout
 {
   import se.gointeractive.layout.geometry.Position;
   
-  public interface LayoutParent
+  public interface LayoutPositioner
   {
     function moveElement
       (element : LayoutElement,
