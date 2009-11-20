@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo
+package se.gointeractive.layout.demo.clean
 {
   import flash.display.Sprite;
   
@@ -8,14 +8,14 @@ package se.gointeractive.layout.demo
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.linear.RowLayouter;
   
-  public class DemoApplication extends Sprite
+  public class CleanDemoApplication extends Sprite
   {
     private const spriteRepository : SpriteRepository = new SpriteRepository;
     
     private const box1 : DemoBox = getBox(50, 50);
     private const box2 : DemoBox = getBox(50, 100);
     
-    public function DemoApplication()
+    public function CleanDemoApplication()
     {
       const container : Container = new Container;
       

@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo
+package se.gointeractive.layout.demo.clean
 {
   import flash.display.Graphics;
   import flash.display.Sprite;

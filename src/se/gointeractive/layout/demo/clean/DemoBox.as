@@ -1,4 +1,4 @@
-package se.gointeractive.layout.demo
+package se.gointeractive.layout.demo.clean
 {
   import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
