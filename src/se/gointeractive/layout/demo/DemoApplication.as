@@ -4,27 +4,26 @@ package se.gointeractive.layout.demo
   
   import org.asspec.util.sequences.Sequence;
   
-  import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.LayoutParent;
   import se.gointeractive.layout.container.Container;
   import se.gointeractive.layout.geometry.Dimensions;
-  import se.gointeractive.layout.geometry.Position;
   import se.gointeractive.layout.linear.RowLayouter;
   
-  public class DemoApplication extends Sprite implements LayoutParent
+  public class DemoApplication extends Sprite
   {
+    private const spriteRepository : SpriteRepository = new SpriteRepository;
+    
     private const box1 : DemoBox = getBox(50, 50);
     private const box2 : DemoBox = getBox(50, 100);
-      
+    
     public function DemoApplication()
     {
       const container : Container = new Container;
       
-      container.add(box1, box1.canvas);
-      container.add(box2, box2.canvas);
+      container.add(box1, spriteRepository.get(box1));
+      container.add(box2, spriteRepository.get(box2));
       
-      addChild(box1.canvas.sprite);
-      addChild(box2.canvas.sprite);
+      addChild(spriteRepository.get(box1).sprite);
+      addChild(spriteRepository.get(box2).sprite);
       
       new RowLayouter(container, dimensions, elements).execute();
     }
@@ -35,18 +34,19 @@ package se.gointeractive.layout.demo
     public function get elements() : Sequence
     { return Sequence.of(box1, box2); }
     
-    public function moveElement
-      (element : LayoutElement, position : Position) : void
-    { DemoBox(element).canvas.position = position; }
-    
     private function getBox(width : Number, height : Number) : DemoBox
     {
-      return new DemoBox
-        (getCanvas(), Dimensions.of(width, height), getRandomColor());
+      const sprite : FlashSprite = getSprite();
+      const result : DemoBox = new DemoBox
+        (sprite, Dimensions.of(width, height), getRandomColor());
+      
+      spriteRepository.set(result, sprite);
+      
+      return result;
     }
     
-    private function getCanvas() : Canvas
-    { return new Canvas(new Sprite); }
+    private function getSprite() : FlashSprite
+    { return new FlashSprite(new Sprite); }
     
     private function getRandomColor() : uint
     { return (Math.random() * 0xffffff) | 0x0000ff; }
