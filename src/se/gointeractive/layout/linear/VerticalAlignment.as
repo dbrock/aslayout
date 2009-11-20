@@ -3,7 +3,7 @@ package se.gointeractive.layout.linear
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
   
-  public class VerticalAlignment implements Alignment
+  internal class VerticalAlignment implements Alignment
   {
     public function getPrimaryDimension(dimensions : Dimensions) : Number
     { return dimensions.height; }
