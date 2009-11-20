@@ -12,12 +12,10 @@ package se.gointeractive.layout.linear.specification
 
   internal class AbstractLayouterSpecification extends AbstractSpecification
   {
-    private var parent : FakePositioner;
-    
     private const elementContainer : SequenceContainer
       = new ArraySequenceContainer;
     
-    protected function add_element
+    protected function add_rigid_element
       (width : Number, height : Number) : FakeRigidElement
     {
       const element : FakeRigidElement
@@ -48,11 +46,14 @@ package se.gointeractive.layout.linear.specification
     private function getRequest
       (width : Number, height : Number) : LayoutRequest
     {
-      const parent : LayoutPositioner = new FakePositioner;
-      const dimensions : Dimensions = Dimensions.of(width, height);
-      const elements : Sequence = elementContainer.sequence;
-      
-      return new LayoutRequest(parent, dimensions, elements);
+      return new LayoutRequest
+        (positioner, Dimensions.of(width, height), elements);
     }
+    
+    private function get positioner() : LayoutPositioner
+    { return new FakePositioner; }
+    
+    private function get elements() : Sequence
+    { return elementContainer.sequence; }
   }
 }
