@@ -1,6 +1,7 @@
 package se.gointeractive.layout.linear
 {
   import se.gointeractive.layout.geometry.Dimensions;
+  import se.gointeractive.layout.geometry.Position;
   
   public class VerticalAlignment implements Alignment
   {
@@ -13,5 +14,9 @@ package se.gointeractive.layout.linear
     public function getDimensions
       (primary : Number, secondary : Number) : Dimensions
     { return Dimensions.of(secondary, primary); }
+    
+    public function getPosition
+      (primary : Number, secondary : Number) : Position
+    { return Position.of(secondary, primary); }
   }
 }

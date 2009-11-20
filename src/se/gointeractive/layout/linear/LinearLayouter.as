@@ -19,31 +19,23 @@ package se.gointeractive.layout.linear
     {
       this.request = request;
       this.alignment = alignment;
-      
-      request.elements.ensureType(LayoutElement);
     }
     
     public function execute() : void
     {
-      resizeFlexibleElements();
-      repositionElements();
+      shapeElements();
+      packElements();
     }
     
-    private function resizeFlexibleElements() : void
-    { flexibleElements.forEach(resizeElement); }
+    private function shapeElements() : void
+    { request.flexibleElements.forEach(shapeElement); }
     
-    private function get flexibleElements() : Sequence
-    { return request.elements.filter(isFlexible); }
-    
-    private function isFlexible(element : LayoutElement) : Boolean
-    { return element is FlexibleLayoutElement; }
-    
-    private function repositionElements() : void
+    private function packElements() : void
     { request.elements.forEach(packElement); }
     
     // ----------------------------------------------------
     
-    private function resizeElement(element : FlexibleLayoutElement) : void
+    private function shapeElement(element : FlexibleLayoutElement) : void
     { element.allocatedDimensions = getDimensions(element); }
     
     private function getDimensions
@@ -62,7 +54,7 @@ package se.gointeractive.layout.linear
     }
     
     private function get currentPosition() : Position
-    { return alignment.getDimensions(allocatedSpace, 0).asPosition; }
+    { return alignment.getPosition(allocatedSpace, 0); }
       
     // ----------------------------------------------------
     

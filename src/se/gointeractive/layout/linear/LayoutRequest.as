@@ -2,6 +2,8 @@ package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
+  import se.gointeractive.layout.FlexibleLayoutElement;
+  import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
   
@@ -19,6 +21,8 @@ package se.gointeractive.layout.linear
       _positioner = positioner;
       _dimensions = dimensions;
       _elements = elements;
+      
+      elements.ensureType(LayoutElement);
     }
     
     public function get positioner() : LayoutPositioner
@@ -29,5 +33,11 @@ package se.gointeractive.layout.linear
     
     public function get elements() : Sequence
     { return _elements; }
+    
+    public function get flexibleElements() : Sequence
+    { return elements.filter(isFlexible); }
+    
+    private function isFlexible(element : LayoutElement) : Boolean
+    { return element is FlexibleLayoutElement; }
   }
 }
