@@ -8,7 +8,7 @@ package se.gointeractive.layout.linear
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.geometry.Position;
   
-  public class LinearLayouter implements Layouter
+  public class LinearLayouter
   {
     private var positioner : LayoutPositioner;
     private var dimensions : Dimensions;

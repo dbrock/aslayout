@@ -5,7 +5,6 @@ package se.gointeractive.layout.linear.specification
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
   import se.gointeractive.layout.linear.ColumnLayouter;
-  import se.gointeractive.layout.linear.Layouter;
 
   internal class ColumnLayouterSpecification
     extends AbstractLayouterSpecification
@@ -23,10 +22,10 @@ package se.gointeractive.layout.linear.specification
       });
     }
     
-    override protected function getLayouter
+    override protected function layout
       (container : LayoutPositioner,
        dimensions : Dimensions,
-       elements : Sequence) : Layouter
-    { return new ColumnLayouter(container, dimensions, elements); }
+       elements : Sequence) : void
+    { new ColumnLayouter(container, dimensions, elements).execute(); }
   }
 }

@@ -4,7 +4,6 @@ package se.gointeractive.layout.linear.specification
   
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
-  import se.gointeractive.layout.linear.Layouter;
   import se.gointeractive.layout.linear.RowLayouter;
 
   internal class RowLayouterSpecification
@@ -72,10 +71,10 @@ package se.gointeractive.layout.linear.specification
       });
     }
     
-    override protected function getLayouter
+    override protected function layout
       (container : LayoutPositioner,
        dimensions : Dimensions,
-       elements : Sequence) : Layouter
-    { return new RowLayouter(container, dimensions, elements); }
+       elements : Sequence) : void
+    { new RowLayouter(container, dimensions, elements).execute(); }
   }
 }

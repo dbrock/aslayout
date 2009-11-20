@@ -7,11 +7,9 @@ package se.gointeractive.layout.linear.specification
   
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
-  import se.gointeractive.layout.linear.Layouter;
 
   internal class AbstractLayouterSpecification extends AbstractSpecification
   {
-    private var layouter : Layouter;
     private var parent : FakePositioner;
     
     private const elementContainer : SequenceContainer
@@ -43,13 +41,13 @@ package se.gointeractive.layout.linear.specification
       const dimensions : Dimensions = Dimensions.of(width, height);
       const elements : Sequence = elementContainer.sequence;
       
-      getLayouter(parent, dimensions, elements).execute();
+      layout(parent, dimensions, elements);
     }
     
-    protected function getLayouter
+    protected function layout
       (parent : LayoutPositioner,
        dimensions : Dimensions,
-       elements : Sequence) : Layouter
+       elements : Sequence) : void
     { throw new Error; }
   }
 }
