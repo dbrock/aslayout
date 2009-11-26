@@ -2,18 +2,17 @@ package se.gointeractive.layout.geometry
 {
   public class Dimensions
   {
-    public var width : Number;
-    public var height : Number;
+    private var _width : Number;
+    private var _height : Number;
+    
+    public function Dimensions(width : Number, height : Number)
+    {
+      _width = width;
+      _height = height;
+    }
 
     public static function of(width : Number, height : Number) : Dimensions
-    {
-      const result : Dimensions = new Dimensions;
-      
-      result.width = width;
-      result.height = height;
-      
-      return result;
-    }
+    { return new Dimensions(width, height); }
     
     public function toString() : String
     { return width + "x" + height; }
@@ -29,5 +28,11 @@ package se.gointeractive.layout.geometry
     
     public function fitsInside(container : Dimensions) : Boolean
     { return width <= container.width && height <= container.height; }
+    
+    public function get width() : Number
+    { return _width; }
+    
+    public function get height() : Number
+    { return _height; }
   }
 }

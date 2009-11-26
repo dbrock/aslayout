@@ -4,8 +4,8 @@ package se.gointeractive.layout.geometry
   
   public class Position implements EqualityComparable
   {
-    public var x : Number;
-    public var y : Number;
+    private var _x : Number;
+    private var _y : Number;
     
     public function equals(other : EqualityComparable) : Boolean
     {
@@ -14,20 +14,25 @@ package se.gointeractive.layout.geometry
         && Position(other).y == y;
     }
     
-    public static function of(x : Number, y : Number) : Position
+    public function Position(x : Number, y : Number)
     {
-      const result : Position = new Position;
-      
-      result.x = x;
-      result.y = y;
-      
-      return result;
+      _x = x;
+      _y = y;
     }
+    
+    public static function of(x : Number, y : Number) : Position
+    { return new Position(x, x); }
     
     public static function get ORIGIN() : Position
     { return Position.of(0, 0); }
     
     public function toString() : String
     { return "(" + x + ", " + y + ")"; }
+    
+    public function get x() : Number
+    { return _x; }
+    
+    public function get y() : Number
+    { return _y; }
   }
 }
