@@ -21,7 +21,7 @@ package se.gointeractive.layout.geometry
     }
     
     public static function of(x : Number, y : Number) : Position
-    { return new Position(x, x); }
+    { return new Position(x, y); }
     
     public static function get ORIGIN() : Position
     { return Position.of(0, 0); }
