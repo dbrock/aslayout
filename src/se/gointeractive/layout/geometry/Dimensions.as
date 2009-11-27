@@ -43,5 +43,15 @@ package se.gointeractive.layout.geometry
 
     public static function of(width : Number, height : Number) : Dimensions
     { return new Dimensions(width, height); }
+    
+    public static function parse(input : String) : Dimensions
+    {
+      const parts : Array = input.split("x");
+      
+      return Dimensions.of(parseDimension(parts[0]), parseDimension(parts[1]));
+    }
+    
+    private static function parseDimension(input : String) : Number
+    { return input == "?" ? NaN : parseFloat(input); }
   }
 }

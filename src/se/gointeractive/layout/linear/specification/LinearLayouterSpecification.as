@@ -12,139 +12,61 @@ package se.gointeractive.layout.linear.specification
 
   public class LinearLayouterSpecification extends AbstractSpecification
   {
+    [Embed(source="linear-layout-examples",
+      mimeType="application/octet-stream")]
+    private const ExampleFile : Class;
+    
     override protected function execute() : void
+    { examples.forEach(checkExample); }
+    
+    private function get examples() : Sequence
+    { return ExampleFileParser.getExamples(exampleFileText); }
+    
+    private function get exampleFileText() : String
+    { return new ExampleFile().toString(); }
+    
+    // ----------------------------------------------------
+    
+    private function checkExample(example : String) : void
     {
-      it("should work without elements", function () : void {
-        specify(function () : void {
-          layout_horizontally(0, 0); })
-            .should.not.throw_error;
-      });
+      const parts : Array = example.split(" => ");
+      const input : String = parts[0];
+      const expected : String = parts[1];
       
-      it("should fail when one element does not fit", function () : void {
-        add_element(100, 100);
-        
-        specify(function () : void {
-          layout_horizontally(50, 50); })
-            .should.throw_error;
-      });
-      
-      it("should fail when two elements do not fit", function () : void {
-        add_element(80, 80);
-        add_element(80, 80);
-        
-        specify(function () : void {
-          layout_horizontally(100, 100); })
-            .should.throw_error;
-      });
-      
-      it("should layout one element correctly", function () : void {
-        const element : FakeElement = add_element(100, 100);
-        
-        layout_horizontally(200, 200);
-        
-        specify(element.position).should.look_like("(0, 0)");
-      });
-      
-      it("should correctly layout two elements horizontally", function () : void {
-        const element1 : FakeElement = add_element(100, 100);
-        const element2 : FakeElement = add_element(100, 100);
-        
-        layout_horizontally(200, 200);
-        
-        specify(element1.position).should.look_like("(0, 0)");
-        specify(element2.position).should.look_like("(100, 0)");
-      });
-      
-      it("should correctly layout two elements vertically", function () : void {
-        const element1 : FakeElement = add_element(100, 100);
-        const element2 : FakeElement = add_element(100, 100);
-        
-        layout_vertically(200, 200);
-        
-        specify(element1.position).should.look_like("(0, 0)");
-        specify(element2.position).should.look_like("(0, 100)");
-      });
-      
-      it("should layout single flexible element correctly", function () : void {
-        const element : FakeElement = add_element(NaN, NaN);
-        
-        layout_horizontally(200, 200);
-        
-        specify(element.position).should.look_like("(0, 0)");
-        specify(element.allocatedDimensions).should.look_like("200x200");
-      });
-      
-      it("should layout two flexible elements correctly", function () : void {
-        const element1 : FakeElement = add_element(NaN, NaN);
-        const element2 : FakeElement = add_element(NaN, NaN);
-        
-        layout_horizontally(200, 200);
-        
-        specify(element1.position).should.look_like("(0, 0)");
-        specify(element2.position).should.look_like("(100, 0)");
-        specify(element1.allocatedDimensions).should.look_like("100x200");
-        specify(element2.allocatedDimensions).should.look_like("100x200");
-      });
-      
-      it("should layout mixed elements correctly", function () : void {
-        const element1 : FakeElement = add_element(20, 20);
-        const element2 : FakeElement = add_element(NaN, NaN);
-        const element3 : FakeElement = add_element(40, 40);
-        
-        layout_horizontally(200, 200);
-        
-        specify(element1.position).should.look_like("(0, 0)");
-        specify(element2.position).should.look_like("(20, 0)");
-        specify(element3.position).should.look_like("(160, 0)");
-        specify(element2.allocatedDimensions).should.look_like("140x200");
-      });
-      
-      it("should correctly layout two weird elements", function () : void {
-        const element1 : FakeElement = add_element(30, NaN);
-        const element2 : FakeElement = add_element(NaN, 40);
-        
-        layout_horizontally(100, 100);
-        
-        specify(element1.position).should.look_like("(0, 0)");
-        specify(element2.position).should.look_like("(30, 0)");
-        specify(element1.allocatedDimensions).should.look_like("30x100");
-        specify(element2.allocatedDimensions).should.look_like("70x40");
-      });
+      $checkExample(input, expected);
     }
     
-    private const elementContainer : SequenceContainer
-      = new ArraySequenceContainer;
-    
-    protected function add_element
-      (width : Number, height : Number) : FakeElement
+    private function $checkExample(input : String, expected : String) : void
     {
-      const element : FakeElement
-        = new FakeElement(Dimensions.of(width, height));
+      const parts : Array = input.split(" :: ");
+      const layout : String = parts[0];
+      const elements : String = parts[1];
       
-      elementContainer.add(element);
+      $$checkExample(layout, elements, expected);
+    }
       
-      return element;
+    private function $$checkExample
+      (layout : String, elements : String, expected : String) : void
+    {
+      const parts : Array = layout.split(" ");
+      const size : String = parts[0];
+      const flavor : String = parts[1];
+      
+      if (flavor == "row" || flavor == "col")
+        $$$checkExample(size, flavor, elements, expected);
+      else if (flavor == "any")
+        {
+          $$$checkExample(size, "row", elements, expected);
+          $$$checkExample(size, "col", elements, expected);
+        }
     }
     
-    protected function layout_horizontally
-      (width : Number, height : Number) : void
-    { LinearLayouter.layoutHorizontally(getRequest(width, height)); }
-    
-    protected function layout_vertically
-      (width : Number, height : Number) : void
-    { LinearLayouter.layoutVertically(getRequest(width, height)); }
-    
-    private function getRequest
-      (width : Number, height : Number) : LayoutRequest
+    private function $$$checkExample
+      (size : String, flavor : String,
+       elements : String, expected : String) : void
     {
-      return new LayoutRequest
-        (positioner, Dimensions.of(width, height), elements);
+      requirement(size + " " + flavor + " :: " + elements, function () : void {
+        new ExampleChecker(size, flavor, elements, expected).execute(); });
     }
-    
-    private function get positioner() : LayoutPositioner
-    { return new FakePositioner; }
-    
-    private function get elements() : Sequence
-    { return elementContainer.sequence; }
   }
 }

@@ -22,5 +22,8 @@ package se.gointeractive.layout.linear.specification
     
     public function set allocatedDimensions(value : Dimensions) : void
     { _allocatedDimensions = value; }
+    
+    public function toString() : String
+    { return allocatedDimensions + "(" + position.x + "," + position.y + ")"; }
   }
 }
