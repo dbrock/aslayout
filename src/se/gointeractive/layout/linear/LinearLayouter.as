@@ -40,7 +40,7 @@ package se.gointeractive.layout.linear
     // ----------------------------------------------------
     
     private function get dimensioner() : Dimensioner
-    { return new Dimensioner(totalPrimarySpace, request.elements, alignment); }
+    { return new Dimensioner(request.dimensions, request.elements, alignment); }
     
     private function get totalPrimarySpace() : Number
     { return alignment.getPrimaryDimension(request.dimensions); }

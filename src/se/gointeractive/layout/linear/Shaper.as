@@ -31,7 +31,8 @@ package se.gointeractive.layout.linear
       (element : LayoutElement) : Dimensions
     {
       return alignment.getDimensions
-        (dimensioner.getPrimarySize(element), secondarySize);
+        (dimensioner.getPrimarySize(element),
+         dimensioner.getSecondarySize(element));
     }
   }
 }

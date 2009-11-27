@@ -3,60 +3,86 @@ package se.gointeractive.layout.linear
   import org.asspec.util.sequences.Sequence;
   
   import se.gointeractive.layout.LayoutElement;
+  import se.gointeractive.layout.geometry.Dimensions;
   
   internal class Dimensioner
   {
-    private var totalSpace : Number;
+    private var totalDimensions : Dimensions;
     private var elements : Sequence;
     private var alignment : Alignment;
     
     public function Dimensioner
-      (totalSpace : Number,
+      (totalDimensions : Dimensions,
        elements : Sequence,
        alignment : Alignment)
     {
-      this.totalSpace = totalSpace;
+      this.totalDimensions = totalDimensions;
       this.elements = elements;
       this.alignment = alignment;
       
-      if (totalRigidSpace > totalSpace)
+      if (totalRigidSpace > totalPrimarySpace)
         throw new Error;
     }
     
+    private function get totalPrimarySpace() : Number
+    { return alignment.getPrimaryDimension(totalDimensions); }
+    
+    private function get totalSecondarySpace() : Number
+    { return alignment.getSecondaryDimension(totalDimensions); }
+    
     public function getPrimarySize(element : LayoutElement) : Number
     {
-      if (isFlexible(element))
+      if (isPrimarilyFlexible(element))
         return flexibleSize;
       else
-        return getPreferredSize(element);
+        return getPreferredPrimarySize(element);
     }
     
-    private function isFlexible(element : LayoutElement) : Boolean
-    { return isNaN(getPreferredSize(element)); }
+    public function getSecondarySize(element : LayoutElement) : Number
+    {
+      if (isSecondarilyFlexible(element))
+        return totalSecondarySpace;
+      else
+        return getPreferredSecondarySize(element);
+    }
     
-    private function isRigid(element : LayoutElement) : Boolean
-    { return !isFlexible(element); }
+    private function isPrimarilyFlexible(element : LayoutElement) : Boolean
+    { return isNaN(getPreferredPrimarySize(element)); }
     
-    private function getPreferredSize(element : LayoutElement) : Number
+    private function isSecondarilyFlexible(element : LayoutElement) : Boolean
+    { return isNaN(getPreferredSecondarySize(element)); }
+    
+    private function getPreferredPrimarySize
+      (element : LayoutElement) : Number
     { return alignment.getPrimaryDimension(element.preferredDimensions); }
+    
+    private function getPreferredSecondarySize
+      (element : LayoutElement) : Number
+    { return alignment.getSecondaryDimension(element.preferredDimensions); }
     
     private function get flexibleSize() : Number
     { return totalFlexibleSpace / flexibleElementCount; }
     
     private function get totalFlexibleSpace() : Number
-    { return totalSpace - totalRigidSpace; }
+    { return totalPrimarySpace - totalRigidSpace; }
     
     private function get totalRigidSpace() : Number
     {
       var result : Number = 0;
       
-      for each (var element : LayoutElement in elements.filter(isRigid))
-        result += getPreferredSize(element);
+      for each (var element : LayoutElement in rigidElements)
+        result += getPreferredPrimarySize(element);
       
       return result; 
     }
     
+    private function get rigidElements() : Sequence
+    { return elements.filter(isPrimarilyRigid); }
+    
+    private function isPrimarilyRigid(element : LayoutElement) : Boolean
+    { return !isPrimarilyFlexible(element); }
+    
     private function get flexibleElementCount() : uint
-    { return elements.filter(isFlexible).length; }
+    { return elements.filter(isPrimarilyFlexible).length; }
   }
 }

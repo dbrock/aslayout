@@ -45,16 +45,6 @@ package se.gointeractive.layout.linear.specification
         specify(element.position).should.look_like("(0, 0)");
       });
       
-//      it("should correctly layout two elements horizontally", function () : void {
-//        const element1 : FakeRigidElement = add_rigid_element(100, 100);
-//        const element2 : FakeRigidElement = add_rigid_element(100, 100);
-//        
-//        layout_horizontally(200, 200);
-//        
-//        specify(element1.position).should.look_like("(0, 0)");
-//        specify(element2.position).should.look_like("(100, 0)");
-//      });
-      
       it("should correctly layout two elements horizontally", function () : void {
         const element1 : FakeElement = add_element(100, 100);
         const element2 : FakeElement = add_element(100, 100);
@@ -107,6 +97,18 @@ package se.gointeractive.layout.linear.specification
         specify(element2.position).should.look_like("(20, 0)");
         specify(element3.position).should.look_like("(160, 0)");
         specify(element2.allocatedDimensions).should.look_like("140x200");
+      });
+      
+      it("should correctly layout two weird elements", function () : void {
+        const element1 : FakeElement = add_element(30, NaN);
+        const element2 : FakeElement = add_element(NaN, 40);
+        
+        layout_horizontally(100, 100);
+        
+        specify(element1.position).should.look_like("(0, 0)");
+        specify(element2.position).should.look_like("(30, 0)");
+        specify(element1.allocatedDimensions).should.look_like("30x100");
+        specify(element2.allocatedDimensions).should.look_like("70x40");
       });
     }
     
