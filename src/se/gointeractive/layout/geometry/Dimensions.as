@@ -1,6 +1,8 @@
 package se.gointeractive.layout.geometry
 {
-  public class Dimensions
+  import org.asspec.util.EqualityComparable;
+  
+  public class Dimensions implements EqualityComparable
   {
     private var _width : Number;
     private var _height : Number;
@@ -10,9 +12,19 @@ package se.gointeractive.layout.geometry
       _width = width;
       _height = height;
     }
-
-    public static function of(width : Number, height : Number) : Dimensions
-    { return new Dimensions(width, height); }
+    
+    public function equals(other : EqualityComparable) : Boolean
+    {
+      return other is Dimensions
+        && Dimensions(other).width == width
+        && Dimensions(other).height == height;
+    }
+    
+    public function get width() : Number
+    { return _width; }
+    
+    public function get height() : Number
+    { return _height; }
     
     public function toString() : String
     { return width + "x" + height; }
@@ -28,11 +40,8 @@ package se.gointeractive.layout.geometry
     
     public function fitsInside(container : Dimensions) : Boolean
     { return width <= container.width && height <= container.height; }
-    
-    public function get width() : Number
-    { return _width; }
-    
-    public function get height() : Number
-    { return _height; }
+
+    public static function of(width : Number, height : Number) : Dimensions
+    { return new Dimensions(width, height); }
   }
 }
