@@ -32,11 +32,5 @@ package se.gointeractive.layout.linear
     
     public function get elements() : Sequence
     { return _elements; }
-    
-    public function get flexibleElements() : Sequence
-    { return elements.filter(isFlexible); }
-    
-    private function isFlexible(element : LayoutElement) : Boolean
-    { return element.preferredDimensions == null; }
   }
 }

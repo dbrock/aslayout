@@ -24,7 +24,7 @@ package se.gointeractive.layout.linear
     // ----------------------------------------------------
     
     private function shapeElements() : void
-    { shaper.shapeElements(request.flexibleElements); }
+    { shaper.shapeElements(request.elements); }
     
     private function get shaper() : Shaper
     { return new Shaper(alignment, dimensioner, totalSecondarySpace); }

@@ -21,7 +21,7 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should fail when one element does not fit", function () : void {
-        add_rigid_element(100, 100);
+        add_element(100, 100);
         
         specify(function () : void {
           layout_horizontally(50, 50); })
@@ -29,8 +29,8 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should fail when two elements do not fit", function () : void {
-        add_rigid_element(80, 80);
-        add_rigid_element(80, 80);
+        add_element(80, 80);
+        add_element(80, 80);
         
         specify(function () : void {
           layout_horizontally(100, 100); })
@@ -38,16 +38,26 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should layout one element correctly", function () : void {
-        const element : FakeRigidElement = add_rigid_element(100, 100);
+        const element : FakeElement = add_element(100, 100);
         
         layout_horizontally(200, 200);
         
         specify(element.position).should.look_like("(0, 0)");
       });
       
+//      it("should correctly layout two elements horizontally", function () : void {
+//        const element1 : FakeRigidElement = add_rigid_element(100, 100);
+//        const element2 : FakeRigidElement = add_rigid_element(100, 100);
+//        
+//        layout_horizontally(200, 200);
+//        
+//        specify(element1.position).should.look_like("(0, 0)");
+//        specify(element2.position).should.look_like("(100, 0)");
+//      });
+      
       it("should correctly layout two elements horizontally", function () : void {
-        const element1 : FakeRigidElement = add_rigid_element(100, 100);
-        const element2 : FakeRigidElement = add_rigid_element(100, 100);
+        const element1 : FakeElement = add_element(100, 100);
+        const element2 : FakeElement = add_element(100, 100);
         
         layout_horizontally(200, 200);
         
@@ -56,8 +66,8 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should correctly layout two elements vertically", function () : void {
-        const element1 : FakeRigidElement = add_rigid_element(100, 100);
-        const element2 : FakeRigidElement = add_rigid_element(100, 100);
+        const element1 : FakeElement = add_element(100, 100);
+        const element2 : FakeElement = add_element(100, 100);
         
         layout_vertically(200, 200);
         
@@ -66,7 +76,7 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should layout single flexible element correctly", function () : void {
-        const element : FakeFlexibleElement = add_flexible_element();
+        const element : FakeElement = add_element(NaN, NaN);
         
         layout_horizontally(200, 200);
         
@@ -75,8 +85,8 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should layout two flexible elements correctly", function () : void {
-        const element1 : FakeFlexibleElement = add_flexible_element();
-        const element2 : FakeFlexibleElement = add_flexible_element();
+        const element1 : FakeElement = add_element(NaN, NaN);
+        const element2 : FakeElement = add_element(NaN, NaN);
         
         layout_horizontally(200, 200);
         
@@ -87,9 +97,9 @@ package se.gointeractive.layout.linear.specification
       });
       
       it("should layout mixed elements correctly", function () : void {
-        const element1 : FakeRigidElement = add_rigid_element(20, 20);
-        const element2 : FakeFlexibleElement = add_flexible_element();
-        const element3 : FakeRigidElement = add_rigid_element(40, 40);
+        const element1 : FakeElement = add_element(20, 20);
+        const element2 : FakeElement = add_element(NaN, NaN);
+        const element3 : FakeElement = add_element(40, 40);
         
         layout_horizontally(200, 200);
         
@@ -103,20 +113,11 @@ package se.gointeractive.layout.linear.specification
     private const elementContainer : SequenceContainer
       = new ArraySequenceContainer;
     
-    protected function add_rigid_element
-      (width : Number, height : Number) : FakeRigidElement
+    protected function add_element
+      (width : Number, height : Number) : FakeElement
     {
-      const element : FakeRigidElement
-        = new FakeRigidElement(Dimensions.of(width, height));
-      
-      elementContainer.add(element);
-      
-      return element;
-    }
-    
-    protected function add_flexible_element() : FakeFlexibleElement
-    {
-      const element : FakeFlexibleElement = new FakeFlexibleElement;
+      const element : FakeElement
+        = new FakeElement(Dimensions.of(width, height));
       
       elementContainer.add(element);
       

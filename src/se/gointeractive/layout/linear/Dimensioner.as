@@ -28,16 +28,16 @@ package se.gointeractive.layout.linear
       if (isFlexible(element))
         return flexibleSize;
       else
-        return getRigidSize(element);
+        return getPreferredSize(element);
     }
     
     private function isFlexible(element : LayoutElement) : Boolean
-    { return element.preferredDimensions == null; }
+    { return isNaN(getPreferredSize(element)); }
     
     private function isRigid(element : LayoutElement) : Boolean
     { return !isFlexible(element); }
     
-    private function getRigidSize(element : LayoutElement) : Number
+    private function getPreferredSize(element : LayoutElement) : Number
     { return alignment.getPrimaryDimension(element.preferredDimensions); }
     
     private function get flexibleSize() : Number
@@ -51,7 +51,7 @@ package se.gointeractive.layout.linear
       var result : Number = 0;
       
       for each (var element : LayoutElement in elements.filter(isRigid))
-        result += getRigidSize(element);
+        result += getPreferredSize(element);
       
       return result; 
     }
