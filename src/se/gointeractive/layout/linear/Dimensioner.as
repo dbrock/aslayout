@@ -2,9 +2,7 @@ package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
-  import se.gointeractive.layout.FlexibleLayoutElement;
   import se.gointeractive.layout.LayoutElement;
-  import se.gointeractive.layout.RigidLayoutElement;
   
   internal class Dimensioner
   {
@@ -27,16 +25,20 @@ package se.gointeractive.layout.linear
     
     public function getPrimarySize(element : LayoutElement) : Number
     {
-      if (element is RigidLayoutElement)
-        return getRigidSize(RigidLayoutElement(element));
-      else if (element is FlexibleLayoutElement)
+      if (isFlexible(element))
         return flexibleSize;
       else
-        throw new Error;
+        return getRigidSize(element);
     }
     
-    private function getRigidSize(element : RigidLayoutElement) : Number
-    { return alignment.getPrimaryDimension(element.rigidDimensions); }
+    private function isFlexible(element : LayoutElement) : Boolean
+    { return element.preferredDimensions == null; }
+    
+    private function isRigid(element : LayoutElement) : Boolean
+    { return !isFlexible(element); }
+    
+    private function getRigidSize(element : LayoutElement) : Number
+    { return alignment.getPrimaryDimension(element.preferredDimensions); }
     
     private function get flexibleSize() : Number
     { return totalFlexibleSpace / flexibleElementCount; }
@@ -48,22 +50,13 @@ package se.gointeractive.layout.linear
     {
       var result : Number = 0;
       
-      for each (var element : LayoutElement in elements)
-        if (element is RigidLayoutElement)
-          result += getRigidSize(RigidLayoutElement(element));
+      for each (var element : LayoutElement in elements.filter(isRigid))
+        result += getRigidSize(element);
       
       return result; 
     }
     
     private function get flexibleElementCount() : uint
-    {
-      var result : uint = 0;
-      
-      for each (var element : LayoutElement in elements)
-        if (element is FlexibleLayoutElement)
-          ++result;
-      
-      return result; 
-    }
+    { return elements.filter(isFlexible).length; }
   }
 }

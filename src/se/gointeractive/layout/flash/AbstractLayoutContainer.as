@@ -3,10 +3,10 @@ package se.gointeractive.layout.flash
   import flash.display.DisplayObject;
   import flash.display.Sprite;
   
-  import se.gointeractive.layout.RigidLayoutElement;
+  import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
 
-  public class AbstractLayoutContainer extends Sprite implements RigidLayoutElement
+  public class AbstractLayoutContainer extends Sprite implements LayoutElement
   {
     private var layout : AbstractLayout;
     
@@ -25,7 +25,10 @@ package se.gointeractive.layout.flash
     public function set dimensions(value : Dimensions) : void
     { layout.dimensions = value; }
     
-    public function get rigidDimensions() : Dimensions
+    public function get preferredDimensions() : Dimensions
     { return layout.dimensions; }
+    
+    public function set allocatedDimensions(value : Dimensions) : void
+    {}
   }
 }

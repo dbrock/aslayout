@@ -1,9 +1,9 @@
 package se.gointeractive.layout.demo.clean
 {
-  import se.gointeractive.layout.RigidLayoutElement;
+  import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
   
-  public class DemoBox implements RigidLayoutElement
+  public class DemoBox implements LayoutElement
   {
     public var canvas : Canvas;
     private var dimensions : Dimensions;
@@ -19,7 +19,10 @@ package se.gointeractive.layout.demo.clean
       canvas.drawRectangle(dimensions.asRectangle, color);
     }
     
-    public function get rigidDimensions() : Dimensions
+    public function get preferredDimensions() : Dimensions
     { return dimensions; }
+    
+    public function set allocatedDimensions(value : Dimensions) : void
+    {}
   }
 }

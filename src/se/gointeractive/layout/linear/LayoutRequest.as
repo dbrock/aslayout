@@ -2,7 +2,6 @@ package se.gointeractive.layout.linear
 {
   import org.asspec.util.sequences.Sequence;
   
-  import se.gointeractive.layout.FlexibleLayoutElement;
   import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.LayoutPositioner;
   import se.gointeractive.layout.geometry.Dimensions;
@@ -38,6 +37,6 @@ package se.gointeractive.layout.linear
     { return elements.filter(isFlexible); }
     
     private function isFlexible(element : LayoutElement) : Boolean
-    { return element is FlexibleLayoutElement; }
+    { return element.preferredDimensions == null; }
   }
 }

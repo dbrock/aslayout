@@ -2,11 +2,11 @@ package se.gointeractive.layout.demo.simple
 {
   import flash.display.Sprite;
   
-  import se.gointeractive.layout.RigidLayoutElement;
+  import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.demo.clean.FlashSprite;
   import se.gointeractive.layout.geometry.Dimensions;
   
-  public class DemoBox extends Sprite implements RigidLayoutElement
+  public class DemoBox extends Sprite implements LayoutElement
   {
     private var dimensions : Dimensions;
     private var color : uint;
@@ -20,8 +20,11 @@ package se.gointeractive.layout.demo.simple
       new FlashSprite(this).drawRectangle(dimensions.asRectangle, color);
     }
     
-    public function get rigidDimensions() : Dimensions
+    public function get preferredDimensions() : Dimensions
     { return dimensions; }
+    
+    public function set allocatedDimensions(value : Dimensions) : void
+    {}
     
     public static function get(width : Number, height : Number) : DemoBox
     { return new DemoBox(Dimensions.of(width, height), getRandomColor()); }

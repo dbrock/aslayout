@@ -1,6 +1,5 @@
 package se.gointeractive.layout.linear
 {
-  import se.gointeractive.layout.FlexibleLayoutElement;
   import se.gointeractive.layout.LayoutElement;
   import se.gointeractive.layout.geometry.Dimensions;
   
