@@ -41,6 +41,17 @@ package se.gointeractive.layout.geometry
     public function fitsInside(container : Dimensions) : Boolean
     { return width <= container.width && height <= container.height; }
 
+    // ----------------------------------------------------
+
+    public static function get FLEXIBLE() : Dimensions
+    { return Dimensions.of(NaN, NaN); }
+
+    public static function width(value : Number) : Dimensions
+    { return Dimensions.of(value, NaN); }
+    
+    public static function height(value : Number) : Dimensions
+    { return Dimensions.of(NaN, value); }
+    
     public static function of(width : Number, height : Number) : Dimensions
     { return new Dimensions(width, height); }
     
