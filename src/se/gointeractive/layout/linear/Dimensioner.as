@@ -22,6 +22,10 @@ package se.gointeractive.layout.linear
       
       if (totalRigidSpace > totalPrimarySpace)
         throw new Error;
+      
+      for each (var element : LayoutElement in elements)
+        if (getSecondarySize(element) > totalSecondarySpace)
+          throw new Error;
     }
     
     private function get totalPrimarySpace() : Number

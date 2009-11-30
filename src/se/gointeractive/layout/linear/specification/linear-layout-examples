@@ -20,12 +20,12 @@
 
 >> 0x0 any :: 0x0 0x1 => error
 >> 0x0 any :: 0x0 1x0 => error
->> 1x1 any :: 1x1 0x1 => error
->> 1x1 any :: 1x1 1x0 => error
 >> 0x0 any :: ?x? 1x1 => error
 
 >> 0x0 any :: ?x? ?x? => 0x0(0,0) 0x0(0,0)
 >> 1x1 any :: 0x0 1x1 => 0x0(0,0) 1x1(0,0)
+>> 1x1 row :: 1x1 0x1 => 1x1(0,0) 0x1(1,0)
+>> 1x1 col :: 1x1 1x0 => 1x1(0,0) 1x0(0,1)
 >> 2x2 row :: 1x1 1x1 => 1x1(0,0) 1x1(1,0)
 >> 2x2 col :: 1x1 1x1 => 1x1(0,0) 1x1(0,1)
 
