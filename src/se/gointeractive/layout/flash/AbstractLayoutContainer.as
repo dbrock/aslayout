@@ -29,6 +29,9 @@ package se.gointeractive.layout.flash
     { return layout.dimensions; }
     
     public function set allocatedDimensions(value : Dimensions) : void
-    {}
+    {
+      layout.dimensions = value;
+      relayout();
+    }
   }
 }
